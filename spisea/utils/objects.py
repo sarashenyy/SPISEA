@@ -5,5 +5,6 @@ class DataHolder(object):
 
     Why do we need this again?
     """
+
     def __init__(self):
         return

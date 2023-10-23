@@ -10,28 +10,28 @@ from astropy.version import version as astropy_version
 # For Astropy 3.0 and later, we can use the standalone pytest plugin
 if astropy_version < '3.0':
     from astropy.tests.pytest_plugins import *  # noqa
+
     del pytest_report_header
     ASTROPY_HEADER = True
 elif astropy_version >= '3.0' and astropy_version < '5.1':
     try:
         from pytest_astropy_header.display import PYTEST_HEADER_MODULES, TESTED_VERSIONS
+
         ASTROPY_HEADER = True
     except ImportError:
         ASTROPY_HEADER = False
-        
+
 else:
     # As of Astropy 5.1, the pytest plugins provided by Astropy have been removed
     # and are instead provided by pytest-astropy-header 
     # (https://github.com/astropy/pytest-astropy-header)
     from pytest_astropy_header.display import PYTEST_HEADER_MODULES, TESTED_VERSIONS
+
     ASTROPY_HEADER = True
 
 
-
 def pytest_configure(config):
-
     if ASTROPY_HEADER:
-
         config.option.astropy_header = True
 
         # Customize the following lines to add/remove entries from the list of
